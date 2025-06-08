@@ -12,13 +12,14 @@ exports.signup = async (req, res)=>{
     const request_body = req.body
 
     //2. Insert the data in the Users collection in MongoDB
-    const userObj = {
+    const userObj = //{name,userId,email,userType,password} = req.body;
+        {
         name : request_body.name,
         userId : request_body.userId,
         email : request_body.email,
         userType : request_body.userType,
         password : bcrypt.hashSync(request_body.password,8)
-    }
+}
 
     try{
 
