@@ -5,6 +5,9 @@ const bcrypt = require("bcryptjs")
 const user_model = require("../models/user.model")
 const jwt = require("jsonwebtoken")
 const secret = require("../configs/auth.config")
+
+/////////////////////////////////////////////////////  SIGN UP ///////////////////////////////////////////////////////////////////////
+
 exports.signup = async (req, res)=>{
     /**
      * Logic to create the user
@@ -36,7 +39,7 @@ exports.signup = async (req, res)=>{
             email : user_created.email,
             userType : user_created.userType,
             createdAt : user_created.createdAt,
-            updatedAt : user_created.updateAt
+            updatedAt : user_created.updatedAt
         }
         res.status(201).send(res_obj)
 
@@ -50,6 +53,9 @@ exports.signup = async (req, res)=>{
     //3. Return the response back to the user
 
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////// SIGN IN ////////////////////////////////////////////////////////////////////
 
 exports.signin = async(req,res)=>{
     // check if user id is present in the db
@@ -86,3 +92,5 @@ exports.signin = async(req,res)=>{
         accessToken : token
     })
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

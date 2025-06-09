@@ -3,6 +3,7 @@
  * 
  * POST- localhost:8888/ecomm/api/v1/categories
  */
+const categoryModel = require("../models/category.model")
 const category_model = require("../models/category.model")
 
 exports.createNewCategory = async (req,res)=>{
@@ -29,4 +30,21 @@ exports.createNewCategory = async (req,res)=>{
 
     //return the response of the created catergory
 
+}
+
+
+exports.fetchCategory =async (req,res)=>{
+    const category = await category_model.findOne({name : req.body.name})
+
+    if(category == null){
+        res.status(401).send({
+            message: "Category not found"
+        })
+    }
+    res.status(200).send({
+        name : category.name,
+        description : category.description
+    })
+
+    
 }
